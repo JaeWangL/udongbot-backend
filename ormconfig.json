@@ -1,0 +1,15 @@
+{
+  "type": "mssql",
+  "host": "smart-geo-test.database.windows.net",
+  "port": 1433,
+  "username": "geodev",
+  "password": "geo5003@@",
+  "database": "smart-geo-db",
+  "schema": "test2",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+  "migrations": ["migrations/*.ts"],
+  "migrationsTableName": "migrations",
+  "cli": {
+    "migrationsDir": "migrations"
+  }
+}
