@@ -13,7 +13,7 @@ export default class GetCommunitiesForQueryHandler
   async execute(query: GetCommunitiesForQueryQuery): Promise<PaginatedItemsViewModel<CommunityPreviewDto>> {
     const { pageSize, pageIndex, searchQuery } = query;
 
-    const [communities, totalItems] = await this.commRepo.findMultipleByQueryAsync(searchQuery);
+    const [communities, totalItems] = await this.commRepo.findMultipleByQueryAsync(searchQuery, true);
 
     return new PaginatedItemsViewModel(pageIndex, pageSize, totalItems, toCommunitiesPreviewDTO(communities));
   }

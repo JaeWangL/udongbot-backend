@@ -49,4 +49,12 @@ export class CommunityPreviewDto {
 
   @ApiProperty({ type: String, nullable: true })
   readonly website?: string;
+
+  @ApiProperty({ type: Number })
+  @IsNotEmpty()
+  readonly memberCount: number;
+
+  @ApiProperty({ type: Number })
+  @IsNotEmpty()
+  readonly onlineCount: number;
 }

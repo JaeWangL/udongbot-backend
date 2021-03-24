@@ -4,7 +4,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import PaginatedItemsViewModel from '@common/dtos/paginated-Items.viewModel';
 import { ApiPaginatedResponse } from '@infrastructure/decorators';
 import { JwtAccessGuard } from '@infrastructure/guards';
-import { CreateCommunityCommand, GetCommunitiesForQueryQuery } from '../application';
+import { CreateCommunityCommand, GetCommunitiesForQueryQuery, GetCommunityByIdQuery } from '../application';
 import { CommunityPreviewDto, CreateCommunityRequest } from '../dtos';
 
 @ApiTags('Communities')
@@ -23,6 +23,17 @@ export default class CommunitiesController {
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED })
   async createCommunity(@Body() req: CreateCommunityRequest): Promise<CommunityPreviewDto> {
     const community: CommunityPreviewDto = await this.commandBus.execute(new CreateCommunityCommand(req));
+
+    return community;
+  }
+
+  @Get(':id')
+  @UseGuards(JwtAccessGuard)
+  @ApiOperation({ summary: 'Get Community By Id' })
+  @ApiResponse({ status: HttpStatus.OK, type: CommunityPreviewDto })
+  @ApiResponse({ status: HttpStatus.UNAUTHORIZED })
+  async getMembersWithComm(@Param('id') id: number): Promise<CommunityPreviewDto> {
+    const community: CommunityPreviewDto = await this.queryBus.execute(new GetCommunityByIdQuery(id));
 
     return community;
   }

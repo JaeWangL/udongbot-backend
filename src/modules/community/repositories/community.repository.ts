@@ -18,7 +18,18 @@ export default class CommunityRepository {
     await this.communityRepo.delete({ id });
   }
 
-  async findByIdAsync(id: number): Promise<CommunityEntity | undefined> {
+  async findByIdAsync(id: number, includeMembers = false): Promise<CommunityEntity | undefined> {
+    if (includeMembers) {
+      const member = await this.communityRepo.findOne({
+        where: {
+          id,
+        },
+        relations: ['members'],
+      });
+
+      return member;
+    }
+
     const member = await this.communityRepo.findOne({
       where: {
         id,
@@ -28,7 +39,16 @@ export default class CommunityRepository {
     return member;
   }
 
-  async findMultipleByQueryAsync(query: string): Promise<[CommunityEntity[], number]> {
+  async findMultipleByQueryAsync(query: string, includeMembers = false): Promise<[CommunityEntity[], number]> {
+    if (includeMembers) {
+      const members = await this.communityRepo.findAndCount({
+        where: [{ name: `%${query}%` }, { description: `%${query}%` }],
+        relations: ['members'],
+      });
+
+      return members;
+    }
+
     const members = await this.communityRepo.findAndCount({
       where: [{ name: `%${query}%` }, { description: `%${query}%` }],
     });
