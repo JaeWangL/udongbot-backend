@@ -2,10 +2,10 @@ import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
 import Bcrypt from 'bcrypt';
 import { UserPreviewDto } from '@modules/identity/dtos';
 import { ConfigService } from '@shared/services';
-import { UserEntity } from '../../entities';
-import { UserRepository } from '../../repositories';
+import { UserEntity } from '@modules/identity/entities';
+import { UserRepository } from '@modules/identity/repositories';
+import { toUserPreviewDTO } from '../../user.extensions';
 import SignUpCommand from './signUp.command';
-import { toUserPreviewDTO } from '../../extensions';
 
 @CommandHandler(SignUpCommand)
 export default class SignUpHandler implements ICommandHandler<SignUpCommand, UserPreviewDto> {

@@ -1,7 +1,7 @@
 import { BadRequestException, Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SignInCommand, SignUpCommand } from '../commands';
+import { SignInCommand, SignUpCommand } from '../application';
 import { AuthTokensDto, SignInRequest, SignUpRequest, UserPreviewDto } from '../dtos';
 
 @ApiTags('Auth')

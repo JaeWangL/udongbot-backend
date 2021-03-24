@@ -1,6 +1,6 @@
 import { Entity, Column, Index } from 'typeorm';
 import { AbstractEntity } from '@common/entities';
-import { pareSocialSignInType, SocialSignInType } from '@common/enums';
+import { parseSocialSignInType, SocialSignInType } from '@common/enums';
 import { RolesEnum } from '@infrastructure/decorators/roles.decorator';
 
 @Entity('Users')
@@ -12,8 +12,8 @@ export default class UserEntity extends AbstractEntity {
   @Column({ type: 'nvarchar', length: 'MAX', nullable: true })
   passwordHash?: string;
 
-  @Column({ type: 'tinyint', nullable: true })
-  socialType?: SocialSignInType;
+  @Column({ type: 'tinyint', enum: SocialSignInType, nullable: true })
+  socialType?: number;
 
   @Column({ type: 'nvarchar', length: 'MAX', nullable: true })
   socialId?: string;
@@ -50,7 +50,7 @@ export default class UserEntity extends AbstractEntity {
     this.name = name;
     this.profileUrl = profileUrl;
     this.passwordHash = passwordHash;
-    this.socialType = socialType ? pareSocialSignInType(socialType) : undefined;
+    this.socialType = socialType ? parseSocialSignInType(socialType) : undefined;
     this.socialId = socialId;
     this.isVerified = isVerified;
     this.role = role;

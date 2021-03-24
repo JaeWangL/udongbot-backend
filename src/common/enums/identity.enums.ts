@@ -3,7 +3,7 @@ export enum SocialSignInType {
   Apple = 1,
 }
 
-export const pareSocialSignInType = (type: SocialSignInType): number => {
+export const parseSocialSignInType = (type: SocialSignInType): number => {
   if (type === SocialSignInType.Apple) {
     return 1;
   }

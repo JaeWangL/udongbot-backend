@@ -4,7 +4,7 @@ import { ApiBearerAuth, ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagg
 import PaginatedItemsViewModel from '@common/dtos/paginated-Items.viewModel';
 import { ApiPaginatedResponse, Roles, RolesEnum } from '@infrastructure/decorators';
 import { JwtAccessGuard, RolesGuard } from '@infrastructure/guards';
-import { GetUserByIdQuery, GetUsersAllQuery } from '../queries';
+import { GetUserByIdQuery, GetUsersAllQuery } from '../application';
 import { UserPreviewDto } from '../dtos';
 
 @ApiTags('Users')

@@ -4,10 +4,10 @@ import { JwtService } from '@nestjs/jwt';
 import { ConfigService, LoggerService } from '@shared/services';
 import Bcrypt from 'bcrypt';
 import Moment from 'moment';
-import { AuthTokensDto } from '../../dtos';
-import { TokenEntity } from '../../entities';
-import { SignInPayload } from '../../interfaces';
-import { TokenRepository, UserRepository } from '../../repositories';
+import { AuthTokensDto } from '@modules/identity/dtos';
+import { TokenEntity } from '@modules/identity/entities';
+import { SignInPayload } from '@modules/identity/interfaces';
+import { TokenRepository, UserRepository } from '@modules/identity/repositories';
 import SignInCommand from './signIn.command';
 
 @CommandHandler(SignInCommand)
