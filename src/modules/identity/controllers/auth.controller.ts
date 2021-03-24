@@ -1,8 +1,8 @@
 import { BadRequestException, Body, Controller, HttpStatus, Post } from '@nestjs/common';
 import { CommandBus } from '@nestjs/cqrs';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
-import { SignInCommand, SignUpCommand } from '../application';
-import { AuthTokensDto, SignInRequest, SignUpRequest, UserPreviewDto } from '../dtos';
+import { SignInCommand, SignInSocialCommand, SignUpCommand } from '../application';
+import { AuthTokensDto, SignInRequest, SignInSocialRequest, SignUpRequest, UserPreviewDto } from '../dtos';
 
 @ApiTags('Auth')
 @Controller('auth')
@@ -17,10 +17,26 @@ export default class AuthController {
     description: 'signed in successfully.',
   })
   async signIn(@Body() req: SignInRequest): Promise<AuthTokensDto> {
-    if (req === undefined) {
+    if (!req) {
       throw new BadRequestException();
     }
     const tokens: AuthTokensDto = await this.commandBus.execute(new SignInCommand(req));
+
+    return tokens;
+  }
+
+  @Post('signIn/social')
+  @ApiOperation({ summary: 'SignIn with social accounts' })
+  @ApiResponse({
+    status: HttpStatus.OK,
+    type: AuthTokensDto,
+    description: 'signed in with social accounts successfully.',
+  })
+  async signInSocial(@Body() req: SignInSocialRequest): Promise<AuthTokensDto> {
+    if (!req) {
+      throw new BadRequestException();
+    }
+    const tokens: AuthTokensDto = await this.commandBus.execute(new SignInSocialCommand(req));
 
     return tokens;
   }

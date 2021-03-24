@@ -17,9 +17,8 @@ export class SignInSocialRequest {
   @IsNotEmpty()
   readonly email: string;
 
-  @ApiProperty({ type: String, maxLength: 30 })
-  @IsNotEmpty()
-  readonly name: string;
+  @ApiProperty({ type: String, maxLength: 30, nullable: true })
+  readonly name?: string;
 
   @ApiProperty({ type: String, nullable: true })
   readonly profileUrl?: string;

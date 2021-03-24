@@ -1,13 +1,13 @@
 import { NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { ICommandHandler, CommandHandler } from '@nestjs/cqrs';
 import { JwtService } from '@nestjs/jwt';
-import { ConfigService, LoggerService } from '@shared/services';
 import Bcrypt from 'bcrypt';
 import Moment from 'moment';
 import { AuthTokensDto } from '@modules/identity/dtos';
 import { TokenEntity } from '@modules/identity/entities';
 import { SignInPayload } from '@modules/identity/interfaces';
 import { TokenRepository, UserRepository } from '@modules/identity/repositories';
+import { ConfigService, LoggerService } from '@shared/services';
 import SignInCommand from './signIn.command';
 
 @CommandHandler(SignInCommand)
