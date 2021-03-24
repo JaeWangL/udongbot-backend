@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsNotEmpty } from 'class-validator';
 import { MemberRankType } from '@common/enums';
-import { CommunityPreviewDto } from './community.dtos';
+import { CommunityForMemberDto } from './community.dtos';
 
 export class CreateMemberRequest {
   @ApiProperty({ type: Number })
@@ -48,7 +48,7 @@ export class MemberWithCommunityDto {
   @IsNotEmpty()
   readonly rank: number;
 
-  @ApiProperty({ type: CommunityPreviewDto })
+  @ApiProperty({ type: CommunityForMemberDto })
   @IsNotEmpty()
-  readonly commnunity: CommunityPreviewDto;
+  readonly commnunity: CommunityForMemberDto;
 }

@@ -26,6 +26,20 @@ export class CreateCommunityRequest {
   readonly creatorUserId: number;
 }
 
+export class CommunityForMemberDto {
+  @ApiProperty({ type: Number })
+  @IsNotEmpty()
+  readonly id: number;
+
+  @ApiProperty({ type: String, maxLength: 30 })
+  @IsNotEmpty()
+  readonly name: string;
+
+  @ApiProperty({ type: String })
+  @IsNotEmpty()
+  readonly profileUrl: string;
+}
+
 export class CommunityPreviewDto {
   @ApiProperty({ type: Number })
   @IsNotEmpty()

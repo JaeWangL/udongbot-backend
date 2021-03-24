@@ -16,10 +16,7 @@ export const toMemberWithCommDTO = (entity: MemberEntity): MemberWithCommunityDt
   commnunity: {
     id: entity.community.id,
     name: entity.community.name,
-    description: entity.community.description,
     profileUrl: entity.community.profileUrl,
-    coverUrl: entity.community.coverUrl,
-    website: entity.community.website,
   },
 });
 
