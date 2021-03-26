@@ -1,8 +1,7 @@
 import { Global, HttpModule, Module } from '@nestjs/common';
-import ConfigService from './config/config.service';
-import LoggerService from './logger/logger.service';
+import { BlobService, ConfigService, LoggerService } from './services';
 
-const providers = [ConfigService, LoggerService];
+const providers = [BlobService, ConfigService, LoggerService];
 
 @Global()
 @Module({
