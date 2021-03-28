@@ -4,7 +4,7 @@ import { MemberPreviewDto } from '@modules/community/dtos';
 import { MemberEntity } from '@modules/community/entities';
 import { MemberRepository } from '@modules/community/repositories';
 import { UserRepository } from '@modules/identity/repositories';
-import { toMemberPreviewDTO } from '../../member.extensions';
+import { toMemberPreviewDTO } from '../../extensions';
 import CreateMemberCommand from './createMember.command';
 
 @CommandHandler(CreateMemberCommand)

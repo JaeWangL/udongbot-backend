@@ -2,7 +2,7 @@ import { NotFoundException } from '@nestjs/common';
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { UserPreviewDto } from '@modules/identity/dtos';
 import { UserRepository } from '@modules/identity/repositories';
-import { toUserPreviewDTO } from '../../user.extensions';
+import { toUserPreviewDTO } from '../../extensions';
 import GetUserByIdQuery from './getUser-by-Id.query';
 
 @QueryHandler(GetUserByIdQuery)

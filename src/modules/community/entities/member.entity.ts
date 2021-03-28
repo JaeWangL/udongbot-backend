@@ -1,8 +1,12 @@
-import { Entity, Column, ManyToOne, JoinTable } from 'typeorm';
+import { Entity, Column, ManyToOne, JoinColumn, OneToMany } from 'typeorm';
 import { AbstractEntity } from '@common/entities';
 import { parseMemberRankType, MemberRankType } from '@common/enums';
 // eslint-disable-next-line import/no-cycle
+import CommentEntity from './comment.entity';
+// eslint-disable-next-line import/no-cycle
 import CommnunityEntity from './community.entity';
+// eslint-disable-next-line import/no-cycle
+import PostEntity from './post.entity';
 
 @Entity('Members')
 export default class MemberEntity extends AbstractEntity {
@@ -31,16 +35,16 @@ export default class MemberEntity extends AbstractEntity {
   isBlocked: boolean;
 
   @ManyToOne(() => CommnunityEntity, (commnunity) => commnunity.members, {
-    cascade: true,
+    onDelete: 'CASCADE',
   })
-  @JoinTable({
-    name: 'FK_Members_Communities_CommunityId',
-    joinColumn: {
-      name: 'Members',
-      referencedColumnName: 'communityId',
-    },
-  })
+  @JoinColumn({ name: 'communityId', referencedColumnName: 'id' })
   community: CommnunityEntity;
+
+  @OneToMany(() => PostEntity, (post) => post.member)
+  posts: PostEntity[];
+
+  @OneToMany(() => CommentEntity, (commnent) => commnent.member)
+  comments: CommentEntity[];
 
   constructor(
     communityId: number,

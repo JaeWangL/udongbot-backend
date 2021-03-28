@@ -25,7 +25,7 @@ export default class MembersController {
     return member;
   }
 
-  @Get(':userId')
+  @Get('user/:userId')
   @UseGuards(JwtAccessGuard)
   @ApiOperation({ summary: 'Get Members With Community' })
   @ApiResponse({

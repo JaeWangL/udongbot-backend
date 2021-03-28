@@ -5,7 +5,7 @@ import { CommunityPreviewDto } from '@modules/community/dtos';
 import { CommunityEntity, MemberEntity } from '@modules/community/entities';
 import { CommunityRepository, MemberRepository } from '@modules/community/repositories';
 import { UserRepository } from '@modules/identity/repositories';
-import { toCommunityPreviewDTO } from '../../community.extensions';
+import { toCommunityPreviewDTO } from '../../extensions';
 import CreateCommunityCommand from './createCommunity.command';
 
 @CommandHandler(CreateCommunityCommand)
@@ -35,10 +35,17 @@ export default class CreateCommunityHandler implements ICommandHandler<CreateCom
 
     await this.createOwner(req.creatorUserId, newComm);
 
-    return toCommunityPreviewDTO(newComm);
+    const foundNewComm = await this.commRepo.findByIdAsync(newComm.id, true);
+    if (!foundNewComm) {
+      throw new InternalServerErrorException(
+        'CreateCommunityHandler.createCommunity: Internal New Community not found',
+      );
+    }
+
+    return toCommunityPreviewDTO(foundNewComm);
   }
 
-  async createOwner(userId: number, newComm: CommunityEntity): Promise<void> {
+  private async createOwner(userId: number, newComm: CommunityEntity): Promise<void> {
     const user = await this.userRepo.findByIdAsync(userId);
     if (!user) {
       throw new NotFoundException('CreateCommunityHandler.createOwner: Not Found Owner User');

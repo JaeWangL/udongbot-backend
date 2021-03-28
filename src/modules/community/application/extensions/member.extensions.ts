@@ -1,5 +1,5 @@
-import { MemberPreviewDto, MemberWithCommunityDto } from '../dtos';
-import { MemberEntity } from '../entities';
+import { MemberPreviewDto, MemberWithCommunityDto } from '../../dtos';
+import { MemberEntity } from '../../entities';
 
 export const toMemberPreviewDTO = (entity: MemberEntity): MemberPreviewDto => ({
   id: entity.id,

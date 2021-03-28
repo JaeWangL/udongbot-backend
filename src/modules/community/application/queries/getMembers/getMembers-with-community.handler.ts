@@ -1,7 +1,7 @@
 import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { MemberWithCommunityDto } from '@modules/community/dtos';
 import { MemberRepository } from '@modules/community/repositories';
-import { toMembersWithCommDTO } from '../../member.extensions';
+import { toMembersWithCommDTO } from '../../extensions';
 import GetMembersWithCommQuery from './getMembers-with-community.query';
 
 @QueryHandler(GetMembersWithCommQuery)

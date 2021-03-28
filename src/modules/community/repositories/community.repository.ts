@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Repository } from 'typeorm';
+import { Like, Repository } from 'typeorm';
 import { CommunityEntity } from '../entities';
 
 @Injectable()
@@ -39,18 +39,25 @@ export default class CommunityRepository {
     return member;
   }
 
-  async findMultipleByQueryAsync(query: string, includeMembers = false): Promise<[CommunityEntity[], number]> {
+  async findMultipleByQueryAsync(
+    query: string,
+    includeMembers = false,
+    skip?: number,
+    take?: number,
+  ): Promise<[CommunityEntity[], number]> {
     if (includeMembers) {
       const members = await this.communityRepo.findAndCount({
-        where: [{ name: `%${query}%` }, { description: `%${query}%` }],
+        where: [{ name: Like(`%${query}%`) }, { description: Like(`%${query}%`) }],
         relations: ['members'],
+        skip,
+        take,
       });
 
       return members;
     }
 
     const members = await this.communityRepo.findAndCount({
-      where: [{ name: `%${query}%` }, { description: `%${query}%` }],
+      where: [{ name: Like(`%${query}%`) }, { description: Like(`%${query}%`) }],
     });
 
     return members;

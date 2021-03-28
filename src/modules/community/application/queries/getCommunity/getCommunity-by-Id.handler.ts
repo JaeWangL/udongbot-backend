@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import { CommunityPreviewDto } from '@modules/community/dtos';
 import { CommunityRepository } from '@modules/community/repositories';
 import { NotFoundException } from '@nestjs/common';
-import { toCommunityPreviewDTO } from '../../community.extensions';
+import { toCommunityPreviewDTO } from '../../extensions';
 import GetCommunityByIdQuery from './getCommunity-by-Id.query';
 
 @QueryHandler(GetCommunityByIdQuery)

@@ -3,13 +3,13 @@ import { CqrsModule } from '@nestjs/cqrs';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import IdentityModule from '@modules/identity/identity.module';
 import { AllCommandHandlers, AllQueryHandlers } from './application';
-import { CommunitiesController, MembersController } from './controllers';
-import { CommunityEntity, MemberEntity } from './entities';
-import { CommunityRepository, MemberRepository } from './repositories';
+import { CommentsController, CommunitiesController, MembersController, PostsController } from './controllers';
+import { CommentEntity, CommunityEntity, MemberEntity, PostEntity } from './entities';
+import { CommentRepository, CommunityRepository, MemberRepository, PostRepository } from './repositories';
 
-const AllControllers = [CommunitiesController, MembersController];
-const AllEntities = [CommunityEntity, MemberEntity];
-const AllRepositories = [CommunityRepository, MemberRepository];
+const AllControllers = [CommentsController, CommunitiesController, MembersController, PostsController];
+const AllEntities = [CommentEntity, CommunityEntity, MemberEntity, PostEntity];
+const AllRepositories = [CommentRepository, CommunityRepository, MemberRepository, PostRepository];
 
 @Module({
   imports: [CqrsModule, TypeOrmModule.forFeature([...AllEntities]), IdentityModule],

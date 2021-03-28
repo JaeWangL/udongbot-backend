@@ -1,5 +1,5 @@
-import { UserPreviewDto } from '../dtos';
-import { UserEntity } from '../entities';
+import { UserPreviewDto } from '../../dtos';
+import { UserEntity } from '../../entities';
 
 export const toUserPreviewDTO = (user: UserEntity): UserPreviewDto => ({
   id: user.id,

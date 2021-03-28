@@ -4,7 +4,7 @@ import { UserPreviewDto } from '@modules/identity/dtos';
 import { ConfigService } from '@shared/services';
 import { UserEntity } from '@modules/identity/entities';
 import { UserRepository } from '@modules/identity/repositories';
-import { toUserPreviewDTO } from '../../user.extensions';
+import { toUserPreviewDTO } from '../../extensions';
 import SignUpCommand from './signUp.command';
 
 @CommandHandler(SignUpCommand)

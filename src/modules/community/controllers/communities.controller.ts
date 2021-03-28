@@ -32,7 +32,7 @@ export default class CommunitiesController {
   @ApiOperation({ summary: 'Get Community By Id' })
   @ApiResponse({ status: HttpStatus.OK, type: CommunityPreviewDto })
   @ApiResponse({ status: HttpStatus.UNAUTHORIZED })
-  async getMembersWithComm(@Param('id') id: number): Promise<CommunityPreviewDto> {
+  async getCommunitiyById(@Param('id') id: number): Promise<CommunityPreviewDto> {
     const community: CommunityPreviewDto = await this.queryBus.execute(new GetCommunityByIdQuery(id));
 
     return community;

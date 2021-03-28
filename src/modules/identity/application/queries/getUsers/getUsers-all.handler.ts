@@ -2,7 +2,7 @@ import { IQueryHandler, QueryHandler } from '@nestjs/cqrs';
 import PaginatedItemsViewModel from '@common/dtos/paginated-Items.viewModel';
 import { UserPreviewDto } from '@modules/identity/dtos';
 import { UserRepository } from '@modules/identity/repositories';
-import { toUsersPreviewDTO } from '../../user.extensions';
+import { toUsersPreviewDTO } from '../../extensions';
 import GetUsersAllQuery from './getUsers-all.query';
 
 @QueryHandler(GetUsersAllQuery)
