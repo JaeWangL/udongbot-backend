@@ -56,6 +56,12 @@ export default class UserEntity extends AbstractEntity {
     this.role = role;
   }
 
+  updateProfile(name: string, profileUrl: string): void {
+    this.name = name;
+    this.profileUrl = profileUrl;
+    this.updatedAt = new Date();
+  }
+
   updateVerified(verified = true): void {
     this.isVerified = verified;
     this.updatedAt = new Date();

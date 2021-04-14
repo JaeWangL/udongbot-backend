@@ -53,6 +53,18 @@ export class TokenRefreshingRequest {
   readonly refreshToken: string;
 }
 
+export class UpdateProfileRequest {
+  @ApiProperty({ type: Number })
+  @IsNotEmpty()
+  readonly userId: number;
+
+  @ApiProperty({ type: String, maxLength: 30, nullable: true })
+  readonly name: string;
+
+  @ApiProperty({ type: String, nullable: true })
+  readonly profileUrl?: string;
+}
+
 export class AuthTokensDto {
   @ApiProperty({ type: String, maxLength: 1024 })
   @IsNotEmpty()
