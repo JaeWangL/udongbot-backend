@@ -9,9 +9,8 @@ export class UpdateProfileRequest {
   @IsNotEmpty()
   readonly name: string;
 
-  @ApiProperty({ type: String })
-  @IsNotEmpty()
-  readonly profileUrl: string;
+  @ApiProperty({ type: String, nullable: true })
+  readonly profileUrl?: string;
 }
 
 export class UserPreviewDto {

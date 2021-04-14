@@ -13,7 +13,7 @@ export default class UpdateProfileHandler implements ICommandHandler<UpdateProfi
   async execute(command: UpdateProfileCommand): Promise<UserPreviewDto> {
     const { req } = command;
 
-    const user = await this.userRepo.findByIdAsync(req.userId);
+    const user = await this.userRepo.findByIdAsync(req.id);
     if (!user) {
       throw new NotFoundException('UpdateProfileHandler.execute: User not found');
     }
